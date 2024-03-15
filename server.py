@@ -11,10 +11,11 @@ def users():
     users = User.get_all()
     return render_template("users.html", usuarios =users)
 #guardar
-@app.route('/user/create',methods=['POST'])
+@app.route('/user/create', methods=['POST'])
 def save():
+    print("Recibiendo datos del formulario...")
     User.save(request.form)
-    return redirect('users')
+    return redirect('/users')
 
 
 if __name__ == "__main__":
