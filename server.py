@@ -10,10 +10,15 @@ def index():
 def users():
     users = User.get_all()
     return render_template("users.html", usuarios =users)
+
+@app.route('/user/new')
+def new():
+    return render_template("new.html")
+
 #guardar
 @app.route('/user/create', methods=['POST'])
-def save():
-    print("Recibiendo datos del formulario...")
+def create():
+    print(request.form)
     User.save(request.form)
     return redirect('/users')
 
