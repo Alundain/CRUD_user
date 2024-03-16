@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect,request
 from users import User
 app = Flask(__name__)
 
+
 @app.route("/")
 def index():
     return redirect('/users')
@@ -22,6 +23,13 @@ def create():
     User.save(request.form)
     return redirect('/users')
 
+#mostrar
+@app.route('/user/show/<int:id>')
+def show(id):
+    data = {
+        "id":id
+    }
+    return render_template("show_user.html", persona=User.get_one(data))
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
